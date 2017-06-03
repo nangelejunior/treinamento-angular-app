@@ -1,0 +1,32 @@
+<div class="container">
+  <h3 class="text-center">Contas</h3>
+  <a routerLink="/accounts/add" class="btn btn-lg btn-success"><i class="fa fa-plus"></i>ADICIONAR</a>
+  <br>
+  <hr>
+  <div class="col-md-8 col-md-offset-2">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="center-text">Data</th>
+          <th class="center-text">Tipo</th>
+          <th class="center-text">Descrição</th>
+          <th class="center-text">Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of accounts">
+          <td class="center-text">{{ account.date | date: 'dd/MM/yyyy' }}</td>
+          <td class="center-text">{{ account.accountType == 0 ? "Contas à pagar" : "Contas à receber" }}</td>
+          <td>{{ account.description }}</td>
+          <td class="center-text">{{ account.value | number : '1.2-2' }}</td>
+          <td class="text-center">
+            <div class="btn-group">
+              <a routerLink="/accounts/edit/{{ account.id }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+              <button class="btn btn-danger btn-sm" (click)="remove(account)"><i class="fa fa-remove"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
